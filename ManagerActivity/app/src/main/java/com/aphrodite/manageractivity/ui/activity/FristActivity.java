@@ -21,6 +21,12 @@ public class FristActivity extends BaseActivity implements View.OnClickListener 
     setContentView(R.layout.activity_main);
     initView();
     initData();
+    /**
+     * 插入数据库测试
+     */
+//    DownloadFileInfo fileInfo = new DownloadFileInfo(1, "英雄联盟.txt", "sdcard/", "www.baidu.com", 10000, 1024);
+//    DownloadFileInfoDao fileInfoDao = ManagerApplication.getDaoManager().getDaoSession().getDownloadFileInfoDao();
+//    fileInfoDao.insert(fileInfo);
   }
 
   private void initView() {

@@ -10,7 +10,6 @@ import org.greenrobot.greendao.annotation.Property;
  */
 @Entity//表明该类是持久化的类(持久化含义，存入数据库文件中，作本地化处理)
 public class DownloadFileInfo {
-  private String name;
   /**
    * id
    */
@@ -44,16 +43,15 @@ public class DownloadFileInfo {
   @Property(nameInDb = "read_length")
   private long readLength;
 
-  @Generated(hash = 537920034)
-  public DownloadFileInfo(String name, long id, String fileName, String savePath,
-                          String url, long totalLength, long readLength) {
-    this.name = name;
-    this.id = id;
-    this.fileName = fileName;
-    this.savePath = savePath;
-    this.url = url;
-    this.totalLength = totalLength;
-    this.readLength = readLength;
+  @Generated(hash = 2098429623)
+  public DownloadFileInfo(long id, String fileName, String savePath, String url,
+          long totalLength, long readLength) {
+      this.id = id;
+      this.fileName = fileName;
+      this.savePath = savePath;
+      this.url = url;
+      this.totalLength = totalLength;
+      this.readLength = readLength;
   }
 
   @Generated(hash = 1515350355)
@@ -108,19 +106,10 @@ public class DownloadFileInfo {
     this.url = url;
   }
 
-  public String getName() {
-    return this.name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
   @Override
   public String toString() {
     return "DownloadFileInfo{" +
-      "name='" + name + '\'' +
-      ", id=" + id +
+      "id=" + id +
       ", fileName='" + fileName + '\'' +
       ", savePath='" + savePath + '\'' +
       ", url='" + url + '\'' +
@@ -128,4 +117,5 @@ public class DownloadFileInfo {
       ", readLength=" + readLength +
       '}';
   }
+
 }

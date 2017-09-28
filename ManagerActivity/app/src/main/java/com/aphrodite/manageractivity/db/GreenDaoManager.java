@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.aphrodite.manageractivity.config.BaseConfig;
+import com.aphrodite.manageractivity.db.upgrade.DBMigrationHelper;
 import com.usher.greendao_demo.greendao.gen.DaoMaster;
 import com.usher.greendao_demo.greendao.gen.DaoSession;
 
@@ -18,10 +19,10 @@ public class GreenDaoManager {
 
   private GreenDaoManager(Context context) {
     /*通过 DaoMaster 的内部类 DevOpenHelper，你可以得到一个便利的 SQLiteOpenHelper注意：默认的 DaoMaster.DevOpenHelper会在数据库升级时，删除所有的表，意味着这将导致数据的丢失。*/
-    DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(context,
+    DBMigrationHelper migrationHelper = new DBMigrationHelper(context,
       BaseConfig.NAME_DATABASE, null);
     //注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。
-    SQLiteDatabase sqLiteDatabase = devOpenHelper.getWritableDatabase();
+    SQLiteDatabase sqLiteDatabase = migrationHelper.getWritableDatabase();
     sDaoMaster = new DaoMaster(sqLiteDatabase);
     sDaoSession = sDaoMaster.newSession();
   }

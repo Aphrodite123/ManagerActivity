@@ -16,12 +16,13 @@ import java.util.List;
 
 /**
  * Created by Aphrodite on 2017/9/24.
+ * description: greenDao升级帮助
  */
 
 public class MigrationHelper {
   private static final String CONVERSION_CLASS_NOT_FOUND_EXCEPTION =
     "MIGRATION HELPER - CLASS DOESN'T MATCH WITH THE CURRENT PARAMETERS";
-  private static MigrationHelper sInstance;
+  private static MigrationHelper sInstance = null;
 
   public static MigrationHelper getInstance() {
     if (null == sInstance) {

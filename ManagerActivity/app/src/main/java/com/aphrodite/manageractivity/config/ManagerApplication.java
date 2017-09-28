@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 
+import com.aphrodite.manageractivity.db.GreenDaoManager;
 import com.aphrodite.manageractivity.util.Logger;
 
 /**
@@ -14,6 +15,7 @@ public class ManagerApplication extends Application {
   private static final String TAG = ManagerApplication.class.getSimpleName();
 
   private static ManagerApplication mApplication = null;
+  private static GreenDaoManager mDaoManager = null;
 
   @Override
   public void onCreate() {
@@ -22,13 +24,27 @@ public class ManagerApplication extends Application {
   }
 
   private void initSystem() {
-    mApplication = this;
+    this.mApplication = this;
 
     Logger.init(this);
+
+    initGreenDao();
+  }
+
+  private void initGreenDao() {
+    this.mDaoManager = GreenDaoManager.getInstance(this);
   }
 
   public static ManagerApplication getApp() {
     return mApplication;
+  }
+
+  public static GreenDaoManager getDaoManager() {
+    return mDaoManager;
+  }
+
+  public static void setDaoManager(GreenDaoManager daoManager) {
+    ManagerApplication.mDaoManager = daoManager;
   }
 
   /**

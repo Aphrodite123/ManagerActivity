@@ -1,4 +1,4 @@
-package com.aphrodite.manageractivity.db.upgrade.impl;
+package com.aphrodite.manageractivity.db.upgrade;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.aphrodite.manageractivity.util.Logger;
 import com.usher.greendao_demo.greendao.gen.DaoMaster;
 import com.usher.greendao_demo.greendao.gen.DownloadFileInfoDao;
+
+import org.greenrobot.greendao.database.Database;
 
 /**
  * Created by Aphrodite on 2017/9/20.
@@ -19,16 +21,9 @@ public class DBMigrationHelper extends DaoMaster.OpenHelper {
   }
 
   @Override
-  public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+  public void onUpgrade(Database db, int oldVersion, int newVersion) {
     Logger.d(TAG, "Enter onUpgrade method.oldVersion: " + oldVersion + " newVersion: " + newVersion);
-    if (oldVersion < 2 && newVersion >= 2) {
-      updateDbForTwo(db);
-    }
+    MigrationHelper.getInstance().migrate(db, DownloadFileInfoDao.class);
   }
 
-  private void updateDbForTwo(SQLiteDatabase db) {
-    Logger.d(TAG, "Enter updateDbForTwo method.");
-    String addName = "ALTER TABLE " + DownloadFileInfoDao.TABLENAME + " ADD COLUMN name VARCHAR";
-    db.execSQL(addName);
-  }
 }
