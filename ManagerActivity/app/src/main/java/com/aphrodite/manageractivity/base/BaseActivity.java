@@ -7,15 +7,17 @@ import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.widget.EditText;
 
+import com.aphrodite.manageractivity.ui.view.ManagerLoadingDialog;
 import com.aphrodite.manageractivity.util.ManagerLoadingUtil;
 import com.aphrodite.manageractivity.util.UIUtils;
-import com.aphrodite.manageractivity.ui.view.ManagerLoadingDialog;
+
+import butterknife.ButterKnife;
 
 /**
  * Created by Aphrodite on 2017/9/11.
  */
 
-public class BaseActivity extends FragmentActivity {
+public abstract class BaseActivity extends FragmentActivity {
 
   private static final int ENABLE_CANCEL_LOADING = 1;
   private static final int DELAY_ENABLE_CANCEL_LOADING = 15 * 1000;
@@ -64,7 +66,19 @@ public class BaseActivity extends FragmentActivity {
     mActivityManager = ActivitysManager.getInstance();
     mActivityManager.addActivity(this);
     super.onCreate(savedInstanceState);
+    setContentView(getViewId());
+    /**
+     * 绑定Activity(注:必须在setContentView之后)
+     */
+    ButterKnife.bind(this);
   }
+
+  /**
+   * 获取layout
+   *
+   * @return
+   */
+  protected abstract int getViewId();
 
   @Override
   protected void onDestroy() {

@@ -9,16 +9,19 @@ import android.widget.TextView;
 import com.aphrodite.manageractivity.R;
 import com.aphrodite.manageractivity.base.BaseActivity;
 
+import butterknife.BindView;
+
 public class FristActivity extends BaseActivity implements View.OnClickListener {
   private static final String TAG = FristActivity.class.getSimpleName();
-  private TextView mTextView;
-  private TextView mButton;
+  @BindView(R.id.main_info)
+  TextView mTextView;
+  @BindView(R.id.main_btn)
+  TextView mButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Log.d(TAG, "Enter onCreate method.");
-    setContentView(R.layout.activity_main);
     initView();
     initData();
     /**
@@ -29,10 +32,12 @@ public class FristActivity extends BaseActivity implements View.OnClickListener 
 //    fileInfoDao.insert(fileInfo);
   }
 
-  private void initView() {
-    mTextView = findViewById(R.id.main_info);
-    mButton = findViewById(R.id.main_btn);
+  @Override
+  protected int getViewId() {
+    return R.layout.activity_main;
+  }
 
+  private void initView() {
     mTextView.setText(this.toString() + "\n" + "current task id: " + this.getTaskId());
     mButton.setOnClickListener(this);
   }

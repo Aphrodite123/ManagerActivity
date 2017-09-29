@@ -41,5 +41,13 @@ dependencies {
    * greenDao框架
    */
   compile 'org.greenrobot:greendao:3.2.2'
+  /**
+   * 日志管理框架
+   */
   compile files('libs/Log.jar')
+  /**
+   * 注解框架
+   */
+  compile 'com.jakewharton:butterknife-compiler:8.8.1'
+  compile 'com.jakewharton:butterknife:8.8.1'
 }
