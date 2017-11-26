@@ -23,6 +23,16 @@ public class BaseConfig {
   public static final String NAME_DATABASE = "manager.db";
 
   /**
+   * Realm名称
+   */
+  public static final String NAME_REALM = "manager.realm";
+
+  /**
+   * 数据库版本号
+   */
+  public static final long DB_VERSION = 1;
+
+  /**
    * Log configuration
    */
   public static final String LOG_FILE_PATH = ROOT_PATH + "logs" + File.separator;

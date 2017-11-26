@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
+/*Apply the realm-android plugin to the top of the application level build.gradle file.*/
+apply plugin: 'realm-android'
 
 android {
   compileSdkVersion 26
@@ -11,11 +13,23 @@ android {
     versionCode 1
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+/*    1.该方法需要三个参数 ： 类型 ， 变量名 ， 值 。
+    2.修改 build.gradle, 配置 defaultConfig 下的 buildConfigField字段, 这是为了 代码编译的方便 ，
+    使得在各个环境下都有 API_HOST 这个字段
+    3.开始 build ， 完成后 ， 可以在代码中使用 ：
+    String str = BuildConfig.HOST_URL;*/
+    buildConfigField("String", "HOST_URL", "\"http://192.168.0.103:8080\"")
   }
   buildTypes {
     release {
+      // 不显示Log, 在java代码中的调用方式为：BuildConfig.DEBUG
+      buildConfigField "boolean", "DEBUG_SWITCH", "false"
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+    debug {
+      // 不显示Log, 在java代码中的调用方式为：BuildConfig.DEBUG
+      buildConfigField "boolean", "DEBUG_SWITCH", "true"
     }
   }
   /**

@@ -25,5 +25,47 @@
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
     android:layout_below="@id/main_info"
-    android:text="点我跳转"/>
+    android:text="点我跳转"
+    android:visibility="gone"/>
+
+  <Button
+    android:id="@+id/main_get_request_btn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Get请求"/>
+
+  <Button
+    android:id="@+id/main_post_request_btn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Post请求"
+    android:layout_below="@id/main_get_request_btn"/>
+
+  <Button
+    android:id="@+id/main_add_btn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="增加"
+    android:layout_below="@id/main_post_request_btn"/>
+
+  <Button
+    android:id="@+id/main_delete_btn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="删除"
+    android:layout_below="@id/main_add_btn"/>
+
+  <Button
+    android:id="@+id/main_update_btn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="更新"
+    android:layout_below="@id/main_delete_btn"/>
+
+  <Button
+    android:id="@+id/main_query_btn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="查询"
+    android:layout_below="@id/main_update_btn"/>
 </RelativeLayout>
