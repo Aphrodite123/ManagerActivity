@@ -12,115 +12,115 @@ import java.util.Stack;
 
 public class ActivitysManager {
 
-  private static ActivitysManager sInstance = null;
+    private static ActivitysManager sInstance = null;
 
-  private static Stack<Activity> mStacks;
+    private static Stack<Activity> mStacks;
 
-  /**
-   * 单一实例
-   */
-  public static ActivitysManager getInstance() {
-    if (null == sInstance) {
-      synchronized (ActivitysManager.class) {
+    /**
+     * 单一实例
+     */
+    public static ActivitysManager getInstance() {
         if (null == sInstance) {
-          sInstance = new ActivitysManager();
+            synchronized (ActivitysManager.class) {
+                if (null == sInstance) {
+                    sInstance = new ActivitysManager();
+                }
+            }
         }
-      }
+        return sInstance;
     }
-    return sInstance;
-  }
 
-  /**
-   * 添加Activity到堆栈
-   */
-  public void addActivity(Activity activity) {
-    if (null == mStacks) {
-      mStacks = new Stack<Activity>();
+    /**
+     * 添加Activity到堆栈
+     */
+    public void addActivity(Activity activity) {
+        if (null == mStacks) {
+            mStacks = new Stack<Activity>();
+        }
+        mStacks.add(activity);
     }
-    mStacks.add(activity);
-  }
 
-  /**
-   * 获取当前Activity（堆栈中最后一个压入的）
-   */
-  public Activity getCurrentActivity() {
-    Activity activity = mStacks.lastElement();
-    return activity;
-  }
-
-  /**
-   * 获取指定类名的Activity
-   */
-  public Activity getActivity(Class<?> cls) {
-    for (Activity activity : mStacks) {
-      if (activity.getClass().equals(cls)) {
+    /**
+     * 获取当前Activity（堆栈中最后一个压入的）
+     */
+    public Activity getCurrentActivity() {
+        Activity activity = mStacks.lastElement();
         return activity;
-      }
     }
-    return null;
-  }
 
-  public boolean isFrontActivity(Activity activity) {
-    if (mStacks.isEmpty()) {
-      return false;
+    /**
+     * 获取指定类名的Activity
+     */
+    public Activity getActivity(Class<?> cls) {
+        for (Activity activity : mStacks) {
+            if (activity.getClass().equals(cls)) {
+                return activity;
+            }
+        }
+        return null;
     }
-    return mStacks.indexOf(activity) == 0;
-  }
 
-  /**
-   * 结束当前Activity（堆栈中最后一个压入的）
-   */
-  public void finishLastActivity() {
-    Activity activity = mStacks.lastElement();
-    finishActivity(activity);
-  }
-
-  /**
-   * 结束指定的Activity
-   */
-  public void finishActivity(Activity activity) {
-    if (activity != null) {
-      mStacks.remove(activity);
-      activity.finish();
-      activity = null;
+    public boolean isFrontActivity(Activity activity) {
+        if (mStacks.isEmpty()) {
+            return false;
+        }
+        return mStacks.indexOf(activity) == 0;
     }
-  }
 
-  /**
-   * 结束指定类名的Activity
-   */
-  public void finishActivity(Class<?> cls) {
-    for (Activity activity : mStacks) {
-      if (activity.getClass().equals(cls)) {
+    /**
+     * 结束当前Activity（堆栈中最后一个压入的）
+     */
+    public void finishLastActivity() {
+        Activity activity = mStacks.lastElement();
         finishActivity(activity);
-      }
     }
-  }
 
-  /**
-   * 结束所有Activity
-   */
-  public void finishAllActivity() {
-    for (int i = 0, size = mStacks.size(); i < size; i++) {
-      if (null != mStacks.get(i)) {
-        mStacks.get(i).finish();
-      }
+    /**
+     * 结束指定的Activity
+     */
+    public void finishActivity(Activity activity) {
+        if (activity != null) {
+            mStacks.remove(activity);
+            activity.finish();
+            activity = null;
+        }
     }
-    mStacks.clear();
-  }
 
-  /**
-   * 退出应用程序
-   */
-  public void appExit(Context context) {
-    try {
-      finishAllActivity();
-      ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-      activityManager.restartPackage(context.getPackageName());
-      System.exit(0);
-      android.os.Process.killProcess(android.os.Process.myPid());
-    } catch (Exception e) {
+    /**
+     * 结束指定类名的Activity
+     */
+    public void finishActivity(Class<?> cls) {
+        for (Activity activity : mStacks) {
+            if (activity.getClass().equals(cls)) {
+                finishActivity(activity);
+            }
+        }
     }
-  }
+
+    /**
+     * 结束所有Activity
+     */
+    public void finishAllActivity() {
+        for (int i = 0, size = mStacks.size(); i < size; i++) {
+            if (null != mStacks.get(i)) {
+                mStacks.get(i).finish();
+            }
+        }
+        mStacks.clear();
+    }
+
+    /**
+     * 退出应用程序
+     */
+    public void appExit(Context context) {
+        try {
+            finishAllActivity();
+            ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+            activityManager.restartPackage(context.getPackageName());
+            System.exit(0);
+            android.os.Process.killProcess(android.os.Process.myPid());
+        } catch (Exception e) {
+        }
+    }
 
 }

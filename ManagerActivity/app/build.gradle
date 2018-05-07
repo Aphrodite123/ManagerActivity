@@ -4,64 +4,66 @@ apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'realm-android'
 
 android {
-  compileSdkVersion 26
-  buildToolsVersion "26.0.0"
-  defaultConfig {
-    applicationId "com.aphrodite.manageractivity"
-    minSdkVersion 19
-    targetSdkVersion 26
-    versionCode 1
-    versionName "1.0"
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
+    defaultConfig {
+        applicationId "com.aphrodite.manageractivity"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 /*    1.该方法需要三个参数 ： 类型 ， 变量名 ， 值 。
     2.修改 build.gradle, 配置 defaultConfig 下的 buildConfigField字段, 这是为了 代码编译的方便 ，
     使得在各个环境下都有 API_HOST 这个字段
     3.开始 build ， 完成后 ， 可以在代码中使用 ：
     String str = BuildConfig.HOST_URL;*/
-    buildConfigField("String", "HOST_URL", "\"http://192.168.0.103:8080\"")
-  }
-  buildTypes {
-    release {
-      // 不显示Log, 在java代码中的调用方式为：BuildConfig.DEBUG
-      buildConfigField "boolean", "DEBUG_SWITCH", "false"
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        buildConfigField("String", "HOST_URL", "\"http://192.168.0.103:8080\"")
     }
-    debug {
-      // 不显示Log, 在java代码中的调用方式为：BuildConfig.DEBUG
-      buildConfigField "boolean", "DEBUG_SWITCH", "true"
+    buildTypes {
+        release {
+            // 不显示Log, 在java代码中的调用方式为：BuildConfig.DEBUG
+            buildConfigField "boolean", "DEBUG_SWITCH", "false"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            // 不显示Log, 在java代码中的调用方式为：BuildConfig.DEBUG
+            buildConfigField "boolean", "DEBUG_SWITCH", "true"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
-  }
-  /**
-   * 针对greenDao的一些配置
-   */
-  greendao {
-    schemaVersion 1 //数据库版本号
-    daoPackage 'com.usher.greendao_demo.greendao.gen' //自动生成的工具类的包名
-    targetGenDir 'src/main/java' //路径
-  }
-  productFlavors {
-  }
+    /**
+     * 针对greenDao的一些配置
+     */
+    greendao {
+        schemaVersion 1 //数据库版本号
+        daoPackage 'com.usher.greendao_demo.greendao.gen' //自动生成的工具类的包名
+        targetGenDir 'src/main/java' //路径
+    }
+    productFlavors {
+    }
 }
 
 dependencies {
-  compile fileTree(include: ['*.jar'], dir: 'libs')
-  androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-    exclude group: 'com.android.support', module: 'support-annotations'
-  })
-  compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-  testCompile 'junit:junit:4.12'
-  /**
-   * greenDao框架
-   */
-  compile 'org.greenrobot:greendao:3.2.2'
-  /**
-   * 日志管理框架
-   */
-  compile files('libs/Log.jar')
-  /**
-   * 注解框架
-   */
-  compile 'com.jakewharton:butterknife-compiler:8.8.1'
-  compile 'com.jakewharton:butterknife:8.8.1'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    testCompile 'junit:junit:4.12'
+    /**
+     * greenDao框架
+     */
+    compile 'org.greenrobot:greendao:3.2.2'
+    /**
+     * 日志管理框架
+     */
+    compile files('libs/Log.jar')
+    /**
+     * 注解框架
+     */
+    compile 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile 'com.jakewharton:butterknife:8.8.1'
 }

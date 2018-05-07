@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.aphrodite.manageractivity">
+    package="com.aphrodite.manageractivity">
 
-  <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
-  <application
-    android:name=".config.ManagerApplication"
-    android:allowBackup="true"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:supportsRtl="true"
-    android:theme="@style/AppTheme">
-    <!--FristActivity-->
-    <activity
-      android:name=".ui.activity.FristActivity"
-      android:launchMode="standard">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
+    <application
+        android:name=".config.ManagerApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <!--FristActivity-->
+        <activity
+            android:name=".ui.activity.FristActivity"
+            android:launchMode="standard">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER"/>
-      </intent-filter>
-    </activity>
-    <!--SecondActivity-->
-    <activity
-      android:name=".ui.activity.SecondActivity"
-      android:launchMode="singleInstance">
-      <intent-filter>
-        <action android:name="com.aphrodite.manageractivity.ui.activity.SECOND"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--SecondActivity-->
+        <activity
+            android:name=".ui.activity.SecondActivity"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="com.aphrodite.manageractivity.ui.activity.SECOND" />
 
-        <category android:name="android.intent.category.DEFAULT"/>
-      </intent-filter>
-    </activity>
-    <!--ThirdActivity-->
-    <activity android:name=".ui.activity.ThirdActivity">
-      <intent-filter>
-        <action android:name="com.aphrodite.manageractivity.ui.activity.THIRD"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!--ThirdActivity-->
+        <activity android:name=".ui.activity.ThirdActivity">
+            <intent-filter>
+                <action android:name="com.aphrodite.manageractivity.ui.activity.THIRD" />
 
-        <category android:name="android.intent.category.DEFAULT"/>
-      </intent-filter>
-    </activity>
-  </application>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
 
 </manifest>
